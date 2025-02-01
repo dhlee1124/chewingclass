@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>공지사항 상세</title>
+</head>
+<body>
+<h1 th:text="${notice.title}"></h1>
+<p th:text="${notice.content}"></p>
+<p><strong>작성일:</strong> <span th:text="${notice.createdAt}"></span></p>
+
+<hr>
+
+<!-- ✅ 이전 공지 -->
+<div th:if="${prevNotice}">
+  <p><strong>이전 공지:</strong>
+    <a th:href="@{/notices/{id}(id=${prevNotice.id})}" th:text="${prevNotice.title}"></a>
+  </p>
+</div>
+
+<!-- ✅ 다음 공지 -->
+<div th:if="${nextNotice}">
+  <p><strong>다음 공지:</strong>
+    <a th:href="@{/notices/{id}(id=${nextNotice.id})}" th:text="${nextNotice.title}"></a>
+  </p>
+</div>
+
+<a href="/notices">공지 목록으로 돌아가기</a>
+</body>
+</html>

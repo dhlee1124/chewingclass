@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>이벤트 목록</title>
+</head>
+<body>
+<h1>이벤트 목록 (빨리 끝나는 순)</h1>
+
+<!-- ✅ 현재 진행 중인 이벤트 개수 표시 -->
+<p><strong>진행 중인 이벤트 수: </strong> <span th:text="${ongoingEventCount}"></span> 개</p>
+
+<a href="/events/new">이벤트 등록</a>
+<table border="1">
+    <tr>
+        <th>이미지</th>
+        <th>제목</th>
+        <th>기간</th>
+        <th>관리</th>
+    </tr>
+    <tr th:each="event : ${events}">
+        <td>
+            <img th:src="@{${event.imageUrl != null ? event.imageUrl : '/uploads/default-event.jpg'}}"
+                 alt="이벤트 이미지" width="100">
+        </td>
+        <td><a th:href="@{/events/{id}(id=${event.id})}" th:text="${event.title}"></a></td>
+        <td th:text="${event.startDate} + ' ~ ' + ${event.endDate}"></td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${event.id})}">수정</a> |
+            <a th:href="@{/events/delete/{id}(id=${event.id})}">삭제</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
