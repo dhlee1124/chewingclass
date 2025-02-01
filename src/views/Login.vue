@@ -4,16 +4,22 @@
     <LoginHeader />
     <!-- 로그인 폼 -->
   </div>
-    <div class="login-buttons">
-      <button class="social-login google">구글로 시작하기</button>
-      <button class="social-login facebook">페이스북으로 시작하기</button>
-      <button class="social-login kakao">카카오로 시작하기</button>
-      <button class="email-login" @click="goToLoginWithEmail">이메일로 시작하기</button>
-      <button class="chewing-login">츄잉 계정으로 시작하기</button>
-    </div>
-    <div class="register-section">
-      <button class="register-button" @click="navigateToRegister">츄잉이 처음이신가요?</button>
-    </div>
+  <div class="login-buttons">
+  <img src="@/assets/google-login.png" alt="구글 로그인" class="social-login" @click="loginWithGoogle" />
+  <img src="@/assets/facebook-login.png" alt="페이스북 로그인" class="social-login" @click="loginWithFacebook" />
+  <img src="@/assets/kakao-login.png" alt="카카오 로그인" class="social-login" @click="loginWithKakao" />
+  <img src="@/assets/email-login.png" alt="이메일 로그인" class="email-login" @click="goToLoginWithEmail" />
+  <img src="@/assets/chewing-login.png" alt="츄잉 계정 로그인" class="chewing-login" @click="loginWithChewing" />
+</div>
+
+<div class="register-section">
+  <img 
+    src="@/assets/register-button.png" 
+    alt="회원가입 버튼" 
+    class="register-button" 
+    @click="navigateToRegister"
+  />
+</div>
   </div>
 </template>
 
@@ -72,7 +78,6 @@ export default {
   font-size: 16px;
   border-radius: 5px;
   border: none;
-  background-color: #f2f2f2;
   color: rgb(0, 0, 0);
   cursor: pointer;
 }
@@ -82,23 +87,19 @@ export default {
   font-size: 16px;
   border-radius: 5px;
   border: none;
-  background-color: #1e90ff;
   color: white;
   cursor: pointer;
 }
 
 .register-section {
+  display: flex;
+  justify-content: center;
   margin-top: 20px;
-  text-align: center;
 }
 
 .register-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  background-color: #fcfcfc;
-  color: rgb(0, 0, 0);
+  width: 100px; /* 버튼 크기 조절 */
+  height: auto;
   cursor: pointer;
 }
 </style>
