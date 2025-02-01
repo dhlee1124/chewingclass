@@ -53,7 +53,7 @@ public class User {
         this.name = "사용자"; // 기본 이름 설정
     }
 
-    protected User() {}
+    public User() {}
 
     // ✅ Getter 및 Setter 추가
     public String getName() {
