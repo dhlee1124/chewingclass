@@ -1,3 +1,4 @@
+# ✅ Backend (Spring Boot 관련)
 HELP.md
 .gradle
 build/
@@ -35,3 +36,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# ✅ Frontend (Vue/React 관련)
+node_modules/
+dist/
+package-lock.json
+/docs

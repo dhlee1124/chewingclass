@@ -1,0 +1,22 @@
+// 색상 정의
+$primary-color: #3498db; // 주요 색상
+$secondary-color: #2ecc71; // 보조 색상
+$background-color: #f5f5f5; // 배경 색상
+$text-color: #333; // 기본 텍스트 색상
+
+// 폰트
+$font-family: "Roboto", sans-serif; // 기본 폰트
+$font-size-base: 16px; // 기본 폰트 크기
+
+// 여백 및 크기
+$padding-base: 16px; // 기본 패딩
+$margin-base: 16px; // 기본 마진
+$border-radius: 8px; // 기본 모서리 둥글기
+
+// 버튼 색상
+$button-bg: $primary-color;
+$button-text-color: #fff;
+
+// 링크
+$link-color: $primary-color;
+$link-hover-color: darken($primary-color, 10%);
