@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FAQ 목록</title>
+    <style>
+        .faq-answer {
+            display: none; /* 기본적으로 답변 숨김 */
+            margin-left: 20px;
+            font-style: italic;
+        }
+        .faq-question {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            var answer = document.getElementById("answer-" + id);
+            if (answer.style.display === "none") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>FAQ 목록</h1>
+
+<!-- ✅ 카테고리 선택 -->
+<form th:action="@{/faq}" method="get">
+    <label>카테고리 선택:
+        <select name="category">
+            <option value="">전체</option>
+            <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"
+                    th:selected="${cat == selectedCategory}"></option>
+        </select>
+    </label>
+    <button type="submit">검색</button>
+</form>
+
+<a href="/faq/new">FAQ 등록</a>
+
+<table border="1">
+    <tr>
+        <th>카테고리</th>
+        <th>질문</th>
+        <th>관리</th>
+    </tr>
+    <tr th:each="faq : ${faqs}">
+        <td th:text="${faq.category}"></td>
+        <td>
+            <span class="faq-question" th:text="${faq.question}" th:onclick="|toggleAnswer(${faq.id})|"></span>
+            <div class="faq-answer" th:id="|answer-${faq.id}|" th:text="${faq.answer}"></div>
+        </td>
+        <td>
+            <a th:href="@{/faq/delete/{id}(id=${faq.id})}">삭제</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

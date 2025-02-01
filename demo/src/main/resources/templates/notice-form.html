@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>공지사항 등록</title>
+</head>
+<body>
+<h1>공지사항 등록</h1>
+<form th:action="@{/notices/save}" th:object="${notice}" method="post">
+  <input type="hidden" th:field="*{id}">
+  <label>제목: <input type="text" th:field="*{title}" required></label><br>
+  <label>내용: <textarea th:field="*{content}" required></textarea></label><br>
+  <button type="submit">저장</button>
+</form>
+</body>
+</html>

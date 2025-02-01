@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>강의 등록</title>
+</head>
+<body>
+<h1>강의 등록</h1>
+<form th:action="@{/lectures/new}" th:object="${lecture}" method="post">
+    <label for="title">강의 제목:</label>
+    <input type="text" id="title" name="title" th:field="*{title}" required><br><br>
+
+    <label for="description">강의 내용:</label>
+    <textarea id="description" name="description" th:field="*{description}" required></textarea><br><br>
+
+    <label for="price">가격:</label>
+    <input type="number" id="price" name="price" th:field="*{price}" step="0.01" required><br><br>
+
+    <label for="instructor">강사 이름:</label>
+    <input type="text" id="instructor" name="instructor" th:field="*{instructor}" required><br><br>
+
+    <button type="submit">등록</button>
+</form>
+</body>
+</html>
