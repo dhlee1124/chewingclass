@@ -17,18 +17,9 @@ public class PasswordController {
     /**
      * ✅ 비밀번호 찾기 (비밀번호 재설정 이메일 요청)
      */
-    @PostMapping("/password/reset")
+    @PostMapping("/api/auth/password/reset/request")
     public ResponseEntity<String> resetPasswordRequest(@RequestParam String email) {
         authService.sendPasswordResetToken(email);
         return ResponseEntity.ok("비밀번호 재설정 이메일이 발송되었습니다.");
-    }
-
-    /**
-     * ✅ 비밀번호 재설정 (토큰 검증 후 변경)
-     */
-    @PostMapping("/password/update")
-    public ResponseEntity<String> updatePassword(@RequestBody ResetPasswordRequest request) {
-        authService.resetPassword(request);
-        return ResponseEntity.ok("비밀번호가 성공적으로 변경되었습니다.");
     }
 }

@@ -43,10 +43,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
+                .csrf(csrf -> csrf.disable()) // CSRF 비활성화
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // 인증 없이 접근 가능
-                        .anyRequest().authenticated() // 그 외 모든 요청은 인증 필요
+                        .requestMatchers("/", "/index.html", "/api/auth/**", "/static/**", "/public/**").permitAll()  // 정적 리소스 및 API 허용
+                        .anyRequest().authenticated() // 그 외 요청은 인증 필요
+                )
+                .formLogin(login -> login // 로그인 폼 활성화 (필요하면 사용)
+                        .loginPage("/login") // 커스텀 로그인 페이지 설정 가능
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/") // 로그아웃 후 리다이렉트
+                        .permitAll()
                 );
 
         return http.build();
