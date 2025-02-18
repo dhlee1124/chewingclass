@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>FAQ 등록</title>
+</head>
+<body>
+<h1>FAQ 등록</h1>
+
+<form th:action="@{/faq/save}" th:object="${faq}" method="post">
+    <label>카테고리:
+        <select th:field="*{category}">
+            <option th:each="cat : ${categories}" th:value="${cat}" th:text="${cat}"></option>
+        </select>
+    </label><br>
+    <label>질문: <input type="text" th:field="*{question}" required></label><br>
+    <label>답변: <textarea th:field="*{answer}" required></textarea></label><br>
+    <button type="submit">저장</button>
+</form>
+
+<a href="/faq">FAQ 목록으로</a>
+</body>
+</html>

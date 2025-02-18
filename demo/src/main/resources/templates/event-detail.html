@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>이벤트 상세</title>
+</head>
+<body>
+<h1 th:text="${event.title}"></h1>
+<img th:src="${event.imageUrl}" alt="이벤트 이미지" width="300">
+<p th:text="'기간: ' + ${event.startDate} + ' ~ ' + ${event.endDate}"></p>
+<p th:text="${event.description}"></p>
+<a href="/events">목록으로</a>
+</body>
+</html>

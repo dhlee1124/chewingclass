@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${lecture.title} + ' - 강좌 상세'"></title>
+    <style>
+        .lecture-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        .lecture-thumbnail {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="lecture-container">
+    <h1 th:text="${lecture.title}"></h1>
+    <p><strong>강사:</strong> <span th:text="${lecture.instructor}"></span></p>
+    <p><strong>가격:</strong> <span th:text="${lecture.price} + '원'"></span></p>
+
+    <img th:src="@{${lecture.thumbnailUrl != null ? lecture.thumbnailUrl : '/uploads/default-thumbnail.jpg'}}"
+         alt="강좌 이미지" class="lecture-thumbnail">
+
+    <h2>강좌 소개</h2>
+    <p th:text="${lecture.description}"></p>
+
+    <h2>강사 프로필</h2>
+    <p><strong>이름:</strong> <span th:text="${lecture.instructor}"></span></p>
+    <p><strong>경력:</strong> (강사 경력 정보 추가 필요)</p>
+
+    <a href="/lectures">목록으로 돌아가기</a>
+</div>
+</body>
+</html>

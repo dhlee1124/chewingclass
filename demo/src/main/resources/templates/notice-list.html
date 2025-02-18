@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>공지사항 목록</title>
+</head>
+<body>
+<h1>공지사항 목록 (최신순)</h1>
+
+<!-- ✅ 검색 폼 추가 -->
+<form th:action="@{/notices}" method="get">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="제목 또는 내용을 검색하세요">
+    <button type="submit">검색</button>
+</form>
+
+<a href="/notices/new">공지 등록</a>
+<table border="1">
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+        <th>작성일</th>
+        <th>관리</th>
+    </tr>
+    <tr th:each="notice : ${notices}">
+        <td><a th:href="@{/notices/{id}(id=${notice.id})}" th:text="${notice.title}"></a></td>
+        <td th:text="${#strings.abbreviate(notice.content, 50)}"></td>
+        <td th:text="${notice.createdAt}"></td>
+        <td>
+            <a th:href="@{/notices/edit/{id}(id=${notice.id})}">수정</a> |
+            <a th:href="@{/notices/delete/{id}(id=${notice.id})}">삭제</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
