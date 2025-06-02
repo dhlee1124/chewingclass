@@ -43,6 +43,14 @@ const routes = [
       name: "EventPage",
       component: () => import("@/views/EventPage.vue"),
       },
+      
+      {
+      path: "/curriculum",
+      name: "Curriculum",
+      component: () => import("@/views/Curriculum.vue"),
+      },
+      
+
       {
         path: "/bookmarked-class",
         name: "BookmarkedClass",

@@ -1,49 +1,42 @@
 <template>
   <div class="dashboard">
-    <div class="dashboard-header">
-      <AppHeader />
-      <GNB />
-      <router-view />
-    </div>
+    <AppHeader />
+    <GNB />
 
-    <!-- 🔹 이미지 슬라이더 추가 -->
+    <!-- 🔹 이미지 슬라이더 -->
     <section class="image-slider">
-      <swiper
-        :modules="[Navigation]"
-        :navigation="true"
-        :loop="true"
-        class="swiper-container"
-      >
-        <swiper-slide v-for="(image, index) in images" :key="index">
-          <img :src="image" class="slide-image" />
-        </swiper-slide>
-      </swiper>
+      <div class="carousel-section">
+  <div class="carousel-slide main-slide">
+    <img src="@/assets/banner.jpg" alt="배너" class="slide-img" />
+  </div>
+  <div class="carousel-slide side-slide left"></div>
+  <div class="carousel-slide side-slide right"></div>
+</div>
     </section>
 
-    <!-- 🔹 강의 리스트 (이미지 파일로 대체) -->
-    <section class="classes-section">
-      <h2 class="clickable-header" @click="goToRecommendClass">츄잉님을 위한 추천 클래스</h2>
-      <div class="class-list clickable-box" @click="goToRecommendClass">
-        <div v-for="(image, index) in classImages" :key="index" class="class-item">
-          <img :src="image" alt="추천 클래스" class="class-image" />
-        </div>
-      </div>
-      <h2>츄잉 BEST 클래스</h2>
+    <!-- 🔹 클래스 섹션 -->
+    <section class="classes-section" v-for="(title, i) in sectionTitles" :key="i">
+      <h2>{{ title }}</h2>
       <div class="class-list">
-        <div v-for="(image, index) in classImages" :key="index" class="class-item">
-          <img :src="image" alt="추천 클래스" class="class-image" />
-        </div>
-      </div>
-      <h2>츄잉 신규 클래스</h2>
-      <div class="class-list">
-        <div v-for="(image, index) in classImages" :key="index" class="class-item">
-          <img :src="image" alt="추천 클래스" class="class-image" />
-        </div>
-      </div>
-      <h2>카테고리별 인기 클래스</h2>
-      <div class="class-list">
-        <div v-for="(image, index) in classImages" :key="index" class="class-item">
-          <img :src="image" alt="추천 클래스" class="class-image" />
+        <div
+          class="class-card"
+          v-for="(classData, j) in classList"
+          :key="j"
+          @click="goToClassDetail(classData.id)"
+        >
+          <img :src="classData.image" alt="class" class="class-thumbnail" />
+          <div class="class-info">
+            <p class="class-title">{{ classData.title }}</p>
+            <p class="instructor">{{ classData.instructor }}</p>
+            <div class="rating">
+              <span class="stars">⭐⭐⭐⭐☆</span>
+            </div>
+            <div class="price">
+              <span class="original">400,000원</span>
+              <span class="discount">20%</span>
+              <span class="final">320,000원</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -55,10 +48,7 @@
 <script>
 import AppHeader from "@/components/AppHeader.vue";
 import GNB from "@/components/GNB.vue";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+
 import ChewingFooter from "@/components/ChewingFooter.vue";
 
 export default {
@@ -66,33 +56,58 @@ export default {
   components: {
     AppHeader,
     GNB,
+  
     ChewingFooter,
-    Swiper,
-    SwiperSlide,
   },
   data() {
     return {
-      // 🔹 배너 슬라이드 이미지
       images: [
         require("@/assets/banner.jpg"),
         require("@/assets/banner.jpg"),
         require("@/assets/banner.jpg"),
       ],
-
-      // 🔹 강의 리스트 (이미지로 대체)
-      classImages: [
-        require("@/assets/class.png"),
-        require("@/assets/class.png"),
-        require("@/assets/class.png"),
-        require("@/assets/class.png"),
+      sectionTitles: [
+        "츄잉님을 위한 추천 클래스",
+        "츄잉 BEST 클래스",
+        "츄잉 신규 클래스",
+      ],
+      classList: [
+        {
+          id: 1,
+          image: require("@/assets/class.png"),
+          title: "역할로 표현하는 다이내믹 캐릭터 핵썹 일러스트",
+          instructor: "강사 이름",
+        },
+        {
+          id: 2,
+          image: require("@/assets/class.png"),
+          title: "역할로 표현하는 다이내믹 캐릭터 핵썹 일러스트",
+          instructor: "강사 이름",
+        },
+        {
+          id: 3,
+          image: require("@/assets/class.png"),
+          title: "역할로 표현하는 다이내믹 캐릭터 핵썹 일러스트",
+          instructor: "강사 이름",
+        },
+        {
+          id: 4,
+          image: require("@/assets/class.png"),
+          title: "역할로 표현하는 다이내믹 캐릭터 핵썹 일러스트",
+          instructor: "강사 이름",
+        },
       ],
     };
+  },
+  methods: {
+    goToClassDetail(id) {
+      this.$router.push({ name: "ClassDetail", params: { id } });
+    },
   },
 };
 </script>
 
 <style scoped>
-/* 🔹 Swiper 슬라이더 스타일 */
 .image-slider {
   width: 100%;
   height: 300px;
@@ -111,7 +126,6 @@ export default {
   display: block;
 }
 
-/* 🔹 네비게이션 버튼 스타일 */
 .swiper-button-next,
 .swiper-button-prev {
   color: white;
@@ -120,40 +134,75 @@ export default {
   border-radius: 50%;
 }
 
-/* 🔹 강의 리스트 스타일 */
 .classes-section {
-  padding: 20px;
+  padding: 30px 60px;
 }
 
 .class-list {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  padding: 10px;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
-.class-item {
+.class-card {
   width: 240px;
-  flex-shrink: 0;
-}
-
-.class-image {
-  width: 100%;
-  height: auto;
+  cursor: pointer;
+  background: white;
   border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
 }
 
-.clickable-header {
-  cursor: pointer;
+.class-card:hover {
+  transform: translateY(-4px);
 }
 
-.clickable-box {
-  cursor: pointer;
-}
-
-.class-image {
+.class-thumbnail {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 160px;
+  object-fit: cover;
+}
+
+.class-info {
+  padding: 12px;
+}
+
+.class-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.instructor {
+  font-size: 12px;
+  color: #555;
+}
+
+.rating {
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.price {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.original {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 4px;
+}
+
+.discount {
+  color: red;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.final {
+  font-weight: bold;
 }
 </style>

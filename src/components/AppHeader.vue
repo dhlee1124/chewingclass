@@ -52,14 +52,10 @@
 </template>
 
 <script>
-import { BellIcon, MessageSquareIcon } from "lucide-vue";
+
 
 export default {
   name: "AppHeader",
-  components: {
-    
-    MessageSquareIcon,
-  },
   data() {
     return {
       isLoggedIn: false,

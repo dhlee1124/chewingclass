@@ -1,6 +1,6 @@
 <template>
   <div class="my-classes">
-    <AppHeader />
+    <AdminHeader />
     <GNB />
     <router-view />
     <div class="content">
@@ -12,7 +12,7 @@
         </div>
         <ul class="menu">
           <li class="active">내 클래스</li>
-          <li>북마크한 클래스</li>
+           <div class="tab" @click="goToBookmarkedClass">북마크한 클래스</div>
           <li>내가 작성한 글</li>
           <li>결제 / 환불 내역</li>
           <li>개인정보 관리</li>
@@ -33,17 +33,25 @@
         </div>
       </main>
     </div>
+    <ChewingFooter />
   </div>
 </template>
 
 <script>
-import AppHeader from "@/components/AppHeader.vue";
+import AdminHeader from "@/components/AdminHeader.vue";
+import ChewingFooter from "@/components/ChewingFooter.vue";
 import GNB from "@/components/GNB.vue";
 export default {
-  name: "MyClasses",
+  name: "ClassDetail",
   components: {
-    AppHeader,
+    AdminHeader,
     GNB,
+    ChewingFooter,
+  },
+  methods: {
+    goToBookmarkedClass() {
+      this.$router.push("/bookmarked-Class");
+    },
   },
 };
 </script>

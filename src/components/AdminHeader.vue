@@ -5,6 +5,7 @@
     </div>
 
     <div class="search-container">
+      <img src="@/assets/icon-search.svg" alt="검색" class="search-icon" />
       <input
         type="text"
         placeholder="어떤 클래스를 찾으시나요?"
@@ -27,30 +28,33 @@
       </div>
     </div>
 
-    <div class="header-actions">
-      <template v-if="isLoggedIn">
-        <button class="icon-btn">
-          <img src="@/assets/logo.png" alt="Chewing Class" />
-        </button>
-        <button class="icon-btn">
-          <MessageSquareIcon />
-        </button>
-        <button class="profile-btn" @click="goToMyPage">
-          <img src="@/assets/profile.png" alt="Profile" />
-        </button>
-      </template>
-    </div>
+    <div class="icons">
+        <img src="@/assets/icon-bell.svg" alt="알림" class="icon" />
+        <img src="@/assets/icon-chat.svg" alt="채팅" class="icon" />
+         <img
+        src="@/assets/profile.png"
+        alt="프로필"
+        class="icon profile-icon"
+        @click="goToMyPage"
+      />
+      </div>
   </header>
 </template>
 
 <script>
-import { MessageSquareIcon } from "lucide-vue";
+
 
 export default {
   name: "AppHeader",
-  components: {
-    MessageSquareIcon,
+  methods: {
+    goToMyPage() {
+      this.$router.push("/my-page");
+    },
+    goToHome() {
+      this.$router.push("/admin-dashboard");
+    },
   },
+  
   data() {
     return {
       isLoggedIn: false,
@@ -62,23 +66,7 @@ export default {
       ],
     };
   },
-  methods: {
-    goToHome() {
-      this.$router.push("/");
-    },
-    goToMyPage() {
-      this.$router.push("/mypage");
-    },
-    openSearch() {
-      this.isSearchActive = true;
-    },
-    closeSearch() {
-      this.isSearchActive = false;
-    },
-    selectTag(tag) {
-      console.log("검색어 선택:", tag);
-    }
-  },
+  
 };
 </script>
 
@@ -153,18 +141,22 @@ export default {
   align-items: center;
 }
 
-.icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  margin-left: 15px;
+..icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.profile-btn img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
   cursor: pointer;
+}
+
+.icon.profile {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
 </style>

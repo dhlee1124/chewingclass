@@ -1,6 +1,6 @@
 <template>
     <div class="my-classes">
-      <AppHeader />
+      <AdminHeader />
       <GNB />
       <router-view />
       <div class="content">
@@ -28,17 +28,20 @@
           </div>
         </main>
       </div>
+      <ChewingFooter />
     </div>
   </template>
   
   <script>
-  import AppHeader from "@/components/AppHeader.vue";
+  import AdminHeader from "@/components/AdminHeader.vue";
+  import ChewingFooter from "@/components/ChewingFooter.vue";
   import GNB from "@/components/GNB.vue";
   export default {
     name: "MyClasses",
     components: {
-      AppHeader,
+      AdminHeader,
       GNB,
+      ChewingFooter,
     },
   };
   </script>
