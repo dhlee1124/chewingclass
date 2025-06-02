@@ -26,6 +26,12 @@ const routes = [
     component: () => import("@/views/LoginWithEmail.vue"),
     },
 
+    {
+    path: "/admin-dashboard",
+    name: "AdminDashboard",
+    component: () => import("@/views/AdminDashboard.vue"),
+    },
+
   {
     path: "/class-detail",
     name: "ClassDetail",
