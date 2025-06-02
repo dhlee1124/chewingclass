@@ -57,7 +57,7 @@ import { BellIcon, MessageSquareIcon } from "lucide-vue";
 export default {
   name: "AppHeader",
   components: {
-    BellIcon,
+    
     MessageSquareIcon,
   },
   data() {

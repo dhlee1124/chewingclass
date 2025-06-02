@@ -1,6 +1,8 @@
 <template>
   <div class="my-classes">
     <AppHeader />
+    <GNB />
+    <router-view />
     <div class="content">
       <!-- 사이드바 -->
       <aside class="sidebar">
@@ -22,12 +24,12 @@
         <h2>개인 정보 관리</h2>
         <nav class="tabs">
           <span class="active">회원 정보</span>
-          <span>비밀번호 변경경</span>
+          <span>비밀번호 변경</span>
         </nav>
 
-        <div class="class-list">
+        <div class="information-section">
           <!-- 여기에 수강중인 강의 목록 추가 예정 -->
-          <p>수강 중인 클래스가 여기에 표시됩니다.</p>
+          <img src="@/assets/information-section.png" alt="프로필 이미지" class="information-img" />
         </div>
       </main>
     </div>
@@ -36,11 +38,12 @@
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
-
+import GNB from "@/components/GNB.vue";
 export default {
   name: "MyClasses",
   components: {
     AppHeader,
+    GNB,
   },
 };
 </script>
@@ -123,9 +126,9 @@ h2 {
   border-bottom: 2px solid black;
 }
 
-.class-list {
-  background: #f8f8f8;
-  padding: 20px;
-  text-align: center;
+.information-img {
+  width: 1000px;
+  height: 200px;
+
 }
 </style>

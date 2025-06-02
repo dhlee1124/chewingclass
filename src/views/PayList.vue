@@ -1,6 +1,8 @@
 <template>
     <div class="my-classes">
       <AppHeader />
+      <GNB />
+      <router-view />
       <div class="content">
         <!-- 사이드바 -->
         <aside class="sidebar">
@@ -28,7 +30,7 @@
   
           <div class="class-list">
             <!-- 여기에 수강중인 강의 목록 추가 예정 -->
-            <p>수강 중인 클래스가 여기에 표시됩니다.</p>
+            <p>결재내역이 표시됩니다.</p>
           </div>
         </main>
       </div>
@@ -37,11 +39,12 @@
   
   <script>
   import AppHeader from "@/components/AppHeader.vue";
-  
+  import GNB from "@/components/GNB.vue";
   export default {
     name: "MyClasses",
     components: {
       AppHeader,
+      GNB,
     },
   };
   </script>

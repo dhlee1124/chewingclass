@@ -1,6 +1,8 @@
 <template>
     <div class="my-classes">
       <AppHeader />
+      <GNB />
+      <router-view />
       <div class="content">
         <!-- 사이드바 -->
         <aside class="sidebar">
@@ -37,11 +39,12 @@
   
   <script>
   import AppHeader from "@/components/AppHeader.vue";
-  
+  import GNB from "@/components/GNB.vue";
   export default {
     name: "MyClasses",
     components: {
       AppHeader,
+      GNB,
     },
   };
   </script>
