@@ -30,7 +30,12 @@
 
     <div class="icons">
         <img src="@/assets/icon-bell.svg" alt="알림" class="icon" />
-        <img src="@/assets/icon-chat.svg" alt="채팅" class="icon" />
+        <img
+        src="@/assets/icon-chat.svg"
+        alt="챗봇"
+        class="icon chat-icon"
+        @click="goToChatBot"
+      />
          <img
         src="@/assets/profile.png"
         alt="프로필"
@@ -52,6 +57,9 @@ export default {
     },
     goToHome() {
       this.$router.push("/admin-dashboard");
+    },
+    goToChatBot() {
+      this.$router.push("/chat-bot");
     },
   },
   

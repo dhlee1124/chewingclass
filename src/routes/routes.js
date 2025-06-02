@@ -50,6 +50,11 @@ const routes = [
       component: () => import("@/views/Curriculum.vue"),
       },
       
+       {
+        path: "/chat-bot",
+        name: "ChatBot",
+        component: () => import("@/views/ChatBot.vue"),
+        },
 
       {
         path: "/bookmarked-class",
